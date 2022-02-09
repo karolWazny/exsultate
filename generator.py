@@ -33,3 +33,9 @@ class Generator:
 
     def add_song_to_document(self, song):
         self.document.add_paragraph(song.title, style=self.configuration['style_mappings']['title'])
+        songparts = song.content
+        for songpart in songparts:
+            self.add_songpart_to_document(songpart)
+
+    def add_songpart_to_document(self, songpart):
+        self.document.add_paragraph(songpart.lyrics(), style=self.configuration['style_mappings'][songpart.type])

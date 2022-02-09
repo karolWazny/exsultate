@@ -1,3 +1,5 @@
+import re
+
 class SongPart:
     def __init__(self, content, type='verse'):
         self.content = content
@@ -6,6 +8,11 @@ class SongPart:
     @staticmethod
     def from_dict(dictionary):
         return SongPart(content=dictionary['content'], type=dictionary['type'])
+
+    def lyrics(self):
+        pattern = r'\[[^\]]*\]'
+        return re.sub(pattern, '', self.content)
+
 
 class Song:
     def __init__(self, title):
