@@ -1,0 +1,16 @@
+{
+	"title": "Nasz Bóg",
+	"lyrics": "Matt Redman, Chris Tomlin, Jonas Myrin, Jesse Reeves",
+	"music": "Matt Redman, Chris Tomlin, Jonas Myrin, Jesse Reeves",
+	"translated": "Agata Dwulat",
+	"content": [
+	{
+		"type": "verse",
+		"content": "1. [c#m]Wodę za[A]mieniłeś w [E]wino,\n[c#m]Ślepi przy [A]Tobie znów [E]widzą,\nktóż jest jak [f#m]Ty?[A] Tylko [H]Ty!\nBlaskiem rozświetlasz ciemności,\nczłowiek powstaje z marności,\nktóż jest jak Ty? Tylko Ty!"
+	},
+	{
+		"type": "chorus",
+		"content": "[c#m]Nasz Bóg jest wielki,\n[A]nasz Bóg jest silny,\n[E]Boże, nikt inny nie [H]równa się z Tobą!\n[c#m]Nasz Bóg uzdrawia,\n[A]jest wszechmogący,\nNasz [E]Bóg, nasz [H]Bóg!"
+	}
+	]
+}
