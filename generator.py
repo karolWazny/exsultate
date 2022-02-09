@@ -1,9 +1,13 @@
 import os
+import time
 from exsultate import *
+from docx import Document
 
 class Generator:
     def __init__(self):
         self.configuration = None
+        self.filename = None
+        self.document = None
 
     def load_configuration(self, filename="config.json"):
         if not os.path.isfile(filename):
@@ -17,3 +21,15 @@ class Generator:
 
     def generate_config_file(self, filename):
         write_json(Generator.get_default_config(), filename)
+
+    def generate(self, songbook):
+        self.filename = str(time.time_ns()) + ".docx"
+        self.document = Document(self.configuration['template'])
+
+        for song in songbook.songs:
+            self.add_song_to_document(song)
+
+        self.document.save(self.filename)
+
+    def add_song_to_document(self, song):
+        self.document.add_paragraph(song.title, style=self.configuration['style_mappings']['title'])
