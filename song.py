@@ -13,7 +13,6 @@ class SongPart:
         pattern = r'\[[^\]]*\]'
         return re.sub(pattern, '', self.content)
 
-
 class Song:
     def __init__(self, title):
         self.title = title
