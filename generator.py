@@ -11,6 +11,7 @@ class Generator:
         self.configuration = None
         self.filename = None
         self.document = None
+        self.previous_part_type = None
 
     def load_configuration(self, filename="config.json"):
         if not os.path.isfile(self.path + filename):
@@ -36,6 +37,7 @@ class Generator:
         return self.filename
 
     def add_song_to_document(self, song):
+        self.previous_part_type = None
         self.document.add_paragraph('', style=self.configuration['style_mappings']['number'])
         self.document.add_paragraph(song.title, style=self.configuration['style_mappings']['title'])
         songparts = song.content
@@ -45,4 +47,12 @@ class Generator:
 
 
     def add_songpart_to_document(self, songpart):
-        self.document.add_paragraph(songpart.lyrics(), style=self.configuration['style_mappings'][songpart.type])
+        repeated_part_type = False
+        if self.previous_part_type == songpart.type:
+            repeated_part_type = True
+        self.previous_part_type = songpart.type
+        style_name = self.configuration['style_mappings'][songpart.type]
+        if repeated_part_type:
+            style_name += '-alt'
+            self.previous_part_type += '-alt'
+        self.document.add_paragraph(songpart.lyrics(), style=style_name)
