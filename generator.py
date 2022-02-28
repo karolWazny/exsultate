@@ -19,7 +19,7 @@ class Generator:
         
     @staticmethod
     def get_default_config():
-        return {"style_mappings": {"verse": "verse", "chorus": "chorus", "title": "title-itself"},
+        return {"style_mappings": { "number": "number", "verse": "verse", "chorus": "chorus", "title": "title-itself"},
                 "template": "template.docx"}
 
     def generate_config_file(self, filename):
@@ -36,6 +36,7 @@ class Generator:
         return self.filename
 
     def add_song_to_document(self, song):
+        self.document.add_paragraph('', style=self.configuration['style_mappings']['number'])
         self.document.add_paragraph(song.title, style=self.configuration['style_mappings']['title'])
         songparts = song.content
         for songpart in songparts:
