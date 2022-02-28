@@ -3,6 +3,8 @@ import time
 from exsultate import *
 from docx import Document
 
+log_filename = os.path.dirname(os.path.realpath(__file__)) + '/log.txt'
+
 class Generator:
     def __init__(self):
         self.path = os.path.dirname(os.path.realpath(__file__)) + '/'
@@ -17,7 +19,7 @@ class Generator:
         
     @staticmethod
     def get_default_config():
-        return {"style_mappings": {"verse": "verse", "chorus": "chorus", "title": "title"},
+        return {"style_mappings": {"verse": "verse", "chorus": "chorus", "title": "title-itself"},
                 "template": "template.docx"}
 
     def generate_config_file(self, filename):
@@ -27,7 +29,6 @@ class Generator:
         # self.filename = filename + str(time.time_ns()) + ".docx"
         self.filename = filename + ".docx"
         self.document = Document(self.path + self.configuration['template'])
-
         for song in songbook.songs:
             self.add_song_to_document(song)
 
@@ -39,6 +40,8 @@ class Generator:
         songparts = song.content
         for songpart in songparts:
             self.add_songpart_to_document(songpart)
+
+
 
     def add_songpart_to_document(self, songpart):
         self.document.add_paragraph(songpart.lyrics(), style=self.configuration['style_mappings'][songpart.type])
