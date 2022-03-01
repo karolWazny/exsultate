@@ -16,8 +16,8 @@ def main():
     generator = Generator()
     generator.load_configuration()
     dictionary = json.loads(json_string)
+    # dictionary = read_json( dir_path + '/' + 'songbook2.json')
     songbook = SongBook.from_dict(dictionary)
-    # songbook = SongBook.from_dict(read_json( dir_path + '/' + 'songbook2.json'))
     output = generator.generate(songbook, filename)
     print(output)
 
